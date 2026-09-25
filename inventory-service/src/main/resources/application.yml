@@ -1,0 +1,44 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: inventory-service
+  config:
+    import: optional:configserver:http://localhost:8888
+  datasource:
+    url: jdbc:mysql://localhost:3306/shopmart_inventory?createDatabaseIfNotExist=true
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  cache:
+    type: redis
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+spring.kafka:
+  bootstrap-servers: localhost:9092
+  producer:
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  consumer:
+    group-id: inventory-group
+    auto-offset-reset: earliest
+    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    properties:
+      spring.json.trusted.packages: "*"
