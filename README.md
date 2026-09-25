@@ -1,4 +1,4 @@
-# ShopMart – Base Project (Java Microservice – Session 14)
+# ShopMart – Base Project (Java Microservice – Session 16-18)
 
 Base project cho bài kiểm tra **"Nâng cấp phân hệ đặt hàng thành giao dịch phân tán (Saga Pattern)"**.
 
